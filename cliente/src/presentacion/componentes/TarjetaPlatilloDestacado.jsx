@@ -1,19 +1,21 @@
 import React from 'react';
+import { obtenerImagenDestacada, RUTAS_IMAGENES } from '../../configuracion/rutasImagenes';
 
 export default function TarjetaPlatilloDestacado({ platillo }) {
   if (!platillo) return null;
 
   const esEstrella = platillo.tipoDestacado === 'estrella';
+  const rutaImagen = obtenerImagenDestacada(platillo.tipoDestacado, platillo.imagenUrl);
 
   return (
     <article className="bg-crema-tarjeta border border-crema-borde rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       <div className="relative h-44 bg-stone-900 overflow-hidden">
         <img
-          src={platillo.imagenUrl || (esEstrella ? '/imagenes/smash_burger.jpg' : '/imagenes/bacon_bbq.jpg')}
+          src={rutaImagen}
           alt={platillo.nombre}
           className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
           onError={(e) => {
-            e.currentTarget.src = '/imagenes/hamburguesa_hero.jpg';
+            e.currentTarget.src = RUTAS_IMAGENES.banners.bienvenidaHero;
           }}
         />
 

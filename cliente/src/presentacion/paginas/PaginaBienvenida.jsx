@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import LogoRongas from '../componentes/LogoRongas';
+import { RUTAS_IMAGENES } from '../../configuracion/rutasImagenes';
 
 export default function PaginaBienvenida({ onIniciarSesion }) {
   return (
@@ -44,7 +45,7 @@ export default function PaginaBienvenida({ onIniciarSesion }) {
       <section className="flex-1 relative min-h-[350px] lg:min-h-screen bg-carbon-tarjeta overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon-fondo via-transparent to-transparent z-10 opacity-90" />
         <img
-          src="/imagenes/hamburguesa_hero.jpg"
+          src={RUTAS_IMAGENES.banners.bienvenidaHero}
           alt="Hamburguesa Artesanal Rongas Burgers"
           className="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-700"
           onError={(e) => {

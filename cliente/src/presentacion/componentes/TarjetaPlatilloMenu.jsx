@@ -1,22 +1,24 @@
 import React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { obtenerImagenPlatillo, RUTAS_IMAGENES } from '../../configuracion/rutasImagenes';
 
 export default function TarjetaPlatilloMenu({ platillo, estaExpandido, alAlternar }) {
   if (!platillo) return null;
 
   const formatearDinero = (v) => `$${Number(v || 0).toFixed(2)}`;
   const insumos = platillo.insumos || [];
+  const rutaImagen = obtenerImagenPlatillo(platillo.nombre, platillo.imagenUrl);
 
   return (
     <article className="bg-crema-tarjeta border border-crema-borde rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex flex-col sm:flex-row gap-5 items-start">
         <div className="w-full sm:w-36 h-32 rounded-2xl overflow-hidden bg-stone-900 flex-shrink-0">
           <img
-            src={platillo.imagenUrl || '/imagenes/smash_burger.jpg'}
+            src={rutaImagen}
             alt={platillo.nombre}
             className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-300"
             onError={(e) => {
-              e.currentTarget.src = '/imagenes/hamburguesa_hero.jpg';
+              e.currentTarget.src = RUTAS_IMAGENES.banners.bienvenidaHero;
             }}
           />
         </div>

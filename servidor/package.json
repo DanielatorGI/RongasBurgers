@@ -6,7 +6,8 @@
   "main": "src/servidor.js",
   "scripts": {
     "start": "node src/servidor.js",
-    "dev": "node --watch src/servidor.js"
+    "dev": "node --watch src/servidor.js",
+    "semilla": "node src/infraestructura/semillas/semillaDatos.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

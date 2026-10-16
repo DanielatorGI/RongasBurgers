@@ -92,7 +92,7 @@ Visualización de platillos, márgenes de ganancia, caché en `localStorage` y e
 ## Fase 9: Pruebas de Integración Multi-Sucursal y Pulido Final
 Verificación de las reglas arquitectónicas antes de la presentación de la Demo.
 
-- [ ] **Commit 9.1:** `test(integracion): validar cambio de sesion entre las 3 sucursales y persistencia de cache`
+- [x] **Commit 9.1:** `test(integracion): validar cambio de sesion entre las 3 sucursales y persistencia de cache`
   - Verificación de que al entrar con el usuario de *Campestre*, *Centro Max* y *Coecillo* cambien todos los indicadores y gráficas, y que el `interceptorSoloLectura` cumpla su función[cite: 9, 10, 11].
-- [ ] **Commit 9.2:** `refactor(solid): auditar limite de lineas por archivo y nomenclatura lowerCamelCase sin letra n con tilde`
+- [x] **Commit 9.2:** `refactor(solid): auditar limite de lineas por archivo y nomenclatura lowerCamelCase sin letra n con tilde`
   - Revisión final de código contra `rules.md` y documentación de ejecución en `README.md`.

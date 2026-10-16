@@ -1,9 +1,14 @@
 import { DatabaseSync } from 'node:sqlite';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const nombreArchivo = fileURLToPath(import.meta.url);
+const directorioActual = path.dirname(nombreArchivo);
+const raizServidor = path.resolve(directorioActual, '../../../');
 
 let instanciaBaseDatos = null;
 
@@ -13,7 +18,9 @@ export function obtenerConexionBaseDatos() {
   }
 
   const rutaRelativa = process.env.RUTA_BASE_DATOS || './datos/rongas_burgers.sqlite';
-  const rutaAbsoluta = path.resolve(process.cwd(), rutaRelativa);
+  const rutaAbsoluta = path.isAbsolute(rutaRelativa)
+    ? rutaRelativa
+    : path.resolve(raizServidor, rutaRelativa);
   const carpetaDestino = path.dirname(rutaAbsoluta);
 
   if (!fs.existsSync(carpetaDestino)) {

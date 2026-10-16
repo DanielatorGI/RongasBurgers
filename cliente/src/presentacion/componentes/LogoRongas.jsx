@@ -6,18 +6,24 @@ export default function LogoRongas({
   mostrarEslogan = true,
   tamano = 'normal'
 }) {
-  const tamanoIcono = tamano === 'grande' ? 'w-14 h-14' : tamano === 'pequeno' ? 'w-8 h-8' : 'w-10 h-10';
-  const tamanoTitulo = tamano === 'grande' ? 'text-2xl sm:text-3xl' : tamano === 'pequeno' ? 'text-lg' : 'text-xl';
+  const tamanoIcono = tamano === 'grande' ? 'w-12 h-12 sm:w-14 sm:h-14' : tamano === 'pequeno' ? 'w-8 h-8' : 'w-10 h-10';
+  const tamanoTitulo = tamano === 'grande' ? 'text-2xl sm:text-3xl' : tamano === 'pequeno' ? 'text-base' : 'text-xl';
   const logoPersonalizado = RUTAS_IMAGENES.logos?.logoPrincipal;
 
   return (
     <div className="flex items-center gap-3">
-      <div className={`${tamanoIcono} rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 shadow-inner flex-shrink-0 overflow-hidden`}>
+      <div className={`${tamanoIcono} rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-105 shadow-sm ${
+        logoPersonalizado
+          ? 'overflow-hidden'
+          : esModoOscuro
+          ? 'bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 text-amber-400 shadow-amber-500/10'
+          : 'bg-gradient-to-br from-amber-500/15 to-orange-500/10 border border-amber-500/25 text-naranja-primario shadow-amber-500/5'
+      }`}>
         {logoPersonalizado ? (
           <img
             src={logoPersonalizado}
             alt="Logo Rongas Burgers"
-            className="w-full h-full object-contain p-1"
+            className="w-full h-full object-cover rounded-2xl"
           />
         ) : (
           <svg viewBox="0 0 24 24" className="w-3/5 h-3/5 fill-current" xmlns="http://www.w3.org/2000/svg">

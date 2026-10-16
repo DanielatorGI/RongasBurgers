@@ -5,51 +5,74 @@ import {
   Bar,
   XAxis,
   YAxis,
-  Tooltip
+  Tooltip,
+  CartesianGrid,
+  Cell
 } from 'recharts';
 
-export default function GraficaVentasCategoria({ datos = [] }) {
-  const formatearMoneda = (valor) => `$${Number(valor).toLocaleString('es-MX')}`;
+const COLORES_CATEGORIA = ['#F59E0B', '#D97706', '#EA580C', '#C2410C', '#78350F'];
 
+function TooltipCategoriaPersonalizado({ active, payload, label }) {
+  if (!active || !payload || !payload.length) return null;
+  const item = payload[0];
+  const unidades = item.payload.unidadesVendidas || 0;
   return (
-    <div className="w-full h-64">
+    <div className="bg-stone-900/95 backdrop-blur-md border border-stone-700/80 p-3 rounded-2xl shadow-xl text-left">
+      <p className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">{label}</p>
+      <p className="text-white font-extrabold text-base font-mono mt-1">
+        ${Number(item.value).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+      </p>
+      <div className="mt-1 flex items-center gap-1.5">
+        <span className="inline-block px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-semibold">
+          {Number(unidades).toLocaleString('es-MX')} unidades vendidas
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default function GraficaVentasCategoria({ datos = [] }) {
+  return (
+    <div className="w-full h-72 sm:h-80">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={datos} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+        <BarChart
+          data={datos}
+          margin={{ top: 15, right: 15, left: -10, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#F5F5F4" vertical={false} />
           <XAxis
             dataKey="categoria"
-            stroke="#A8A29E"
-            fontSize={11}
+            stroke="#78716C"
+            fontSize={12}
             tickLine={false}
             axisLine={false}
+            dy={8}
             interval={0}
-            tickFormatter={(cat) => (cat.length > 9 ? `${cat.substring(0, 8)}...` : cat)}
           />
           <YAxis
-            stroke="#A8A29E"
+            stroke="#78716C"
             fontSize={11}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(v) => `$${v / 1000}k`}
+            dx={-5}
+            tickFormatter={(v) => `$${Math.round(v / 1000)}k`}
           />
           <Tooltip
-            formatter={(valor, nombre, item) => [
-              `${formatearMoneda(valor)} (${item.payload.unidadesVendidas} uds)`,
-              'Ventas'
-            ]}
-            contentStyle={{
-              backgroundColor: '#1C1917',
-              borderRadius: '12px',
-              border: 'none',
-              color: '#FFFFFF',
-              fontSize: '12px',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)'
-            }}
+            content={<TooltipCategoriaPersonalizado />}
+            cursor={{ fill: 'rgba(245, 158, 11, 0.06)', radius: 10 }}
           />
           <Bar
             dataKey="montoVentas"
-            fill="#E6953B"
-            radius={[8, 8, 0, 0]}
-          />
+            radius={[10, 10, 0, 0]}
+            maxBarSize={55}
+          >
+            {datos.map((entry, index) => (
+              <Cell
+                key={`celda-cat-${entry.categoria || index}`}
+                fill={COLORES_CATEGORIA[index % COLORES_CATEGORIA.length]}
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

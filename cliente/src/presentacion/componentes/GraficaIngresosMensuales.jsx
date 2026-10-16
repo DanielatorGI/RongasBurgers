@@ -5,54 +5,66 @@ import {
   Area,
   XAxis,
   YAxis,
-  Tooltip
+  Tooltip,
+  CartesianGrid
 } from 'recharts';
 
-export default function GraficaIngresosMensuales({ datos = [] }) {
-  const formatearMoneda = (valor) => `$${Number(valor).toLocaleString('es-MX')}`;
-
+function TooltipIngresosPersonalizado({ active, payload, label }) {
+  if (!active || !payload || !payload.length) return null;
+  const valor = payload[0].value;
   return (
-    <div className="w-full h-64">
+    <div className="bg-stone-900/95 backdrop-blur-md border border-stone-700/80 p-3 rounded-2xl shadow-xl text-left">
+      <p className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">{label}</p>
+      <div className="flex items-center gap-2 mt-1">
+        <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+        <span className="text-white font-extrabold text-base font-mono">
+          ${Number(valor).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+        </span>
+      </div>
+      <p className="text-[10px] text-stone-400 mt-0.5">Ingresos Totales del Mes</p>
+    </div>
+  );
+}
+
+export default function GraficaIngresosMensuales({ datos = [] }) {
+  return (
+    <div className="w-full h-72 sm:h-80">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={datos} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
+        <AreaChart data={datos} margin={{ top: 15, right: 15, left: -10, bottom: 5 }}>
           <defs>
-            <linearGradient id="degradadoNaranja" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.45} />
-              <stop offset="95%" stopColor="#F59E0B" stopOpacity={0.0} />
+            <linearGradient id="degradadoIngresosRongas" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#F59E0B" stopOpacity={0.5} />
+              <stop offset="60%" stopColor="#D97706" stopOpacity={0.15} />
+              <stop offset="100%" stopColor="#D97706" stopOpacity={0.0} />
             </linearGradient>
           </defs>
+          <CartesianGrid strokeDasharray="3 3" stroke="#F5F5F4" vertical={false} />
           <XAxis
             dataKey="mesNombre"
-            stroke="#A8A29E"
+            stroke="#78716C"
             fontSize={12}
             tickLine={false}
             axisLine={false}
+            dy={8}
           />
           <YAxis
-            stroke="#A8A29E"
+            stroke="#78716C"
             fontSize={11}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(v) => `$${v / 1000}k`}
+            dx={-5}
+            tickFormatter={(v) => `$${Math.round(v / 1000)}k`}
           />
-          <Tooltip
-            formatter={(valor) => [formatearMoneda(valor), 'Ingresos']}
-            contentStyle={{
-              backgroundColor: '#1C1917',
-              borderRadius: '12px',
-              border: 'none',
-              color: '#FFFFFF',
-              fontSize: '12px',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)'
-            }}
-          />
+          <Tooltip content={<TooltipIngresosPersonalizado />} />
           <Area
             type="monotone"
             dataKey="montoIngresos"
             stroke="#D97706"
-            strokeWidth={3}
+            strokeWidth={3.5}
             fillOpacity={1}
-            fill="url(#degradadoNaranja)"
+            fill="url(#degradadoIngresosRongas)"
+            dot={{ r: 4.5, fill: '#FFFFFF', stroke: '#D97706', strokeWidth: 2 }}
+            activeDot={{ r: 7, fill: '#F59E0B', stroke: '#1C1917', strokeWidth: 3 }}
           />
         </AreaChart>
       </ResponsiveContainer>

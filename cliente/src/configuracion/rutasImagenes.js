@@ -23,7 +23,7 @@ export const RUTAS_IMAGENES = {
 
   // 2. Logotipos y Marcas
   logos: {
-    logoPrincipal: '/imagenes/logos/logo_rongas.jpg',
+    logoPrincipal: '', // Deja vacio para usar el logo vectorial oficial, o define una ruta (ej: '/imagenes/logos/logo.png')
     iconoHamburguesa: '/imagenes/logos/icono_burger.jpg',
     favicon: '/favicon.ico'
   },

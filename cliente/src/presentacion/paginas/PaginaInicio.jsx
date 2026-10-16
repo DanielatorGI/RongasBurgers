@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader2, RefreshCw } from 'lucide-react';
+import { Loader2, RefreshCw, TrendingUp, BarChart3 } from 'lucide-react';
 import { usarControladorInicio } from '../../aplicacion/controladores/usarControladorInicio';
 import ContenedorGrafica from '../componentes/ContenedorGrafica';
 import GraficaIngresosMensuales from '../componentes/GraficaIngresosMensuales';
@@ -37,25 +37,37 @@ export default function PaginaInicio() {
 
   const { ingresosMensuales = [], ventasPorCategoria = [], platillosDestacados = [] } = datosInicio || {};
 
+  const totalIngresos = ingresosMensuales.reduce((acc, m) => acc + (Number(m.montoIngresos) || 0), 0);
+
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ContenedorGrafica
-              titulo="Ingresos Mensuales"
-              subtitulo="Evolución de ingresos durante el año"
-            >
-              <GraficaIngresosMensuales datos={ingresosMensuales} />
-            </ContenedorGrafica>
+          <ContenedorGrafica
+            titulo="Ingresos Mensuales"
+            subtitulo="Evolución y tendencia de facturación durante el periodo"
+            accionesSuperiores={
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 text-xs font-bold">
+                <TrendingUp className="w-3.5 h-3.5 text-naranja-primario" />
+                <span>Total: ${Math.round(totalIngresos).toLocaleString('es-MX')}</span>
+              </div>
+            }
+          >
+            <GraficaIngresosMensuales datos={ingresosMensuales} />
+          </ContenedorGrafica>
 
-            <ContenedorGrafica
-              titulo="Ventas por Categoría"
-              subtitulo="Comparativa de ventas por categoría"
-            >
-              <GraficaVentasCategoria datos={ventasPorCategoria} />
-            </ContenedorGrafica>
-          </div>
+          <ContenedorGrafica
+            titulo="Ventas por Categoría"
+            subtitulo="Distribución de ingresos generados por tipo de producto"
+            accionesSuperiores={
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-semibold">
+                <BarChart3 className="w-3.5 h-3.5 text-stone-500" />
+                <span>{ventasPorCategoria.length} Categorías</span>
+              </div>
+            }
+          >
+            <GraficaVentasCategoria datos={ventasPorCategoria} />
+          </ContenedorGrafica>
         </div>
 
         <aside className="space-y-4">

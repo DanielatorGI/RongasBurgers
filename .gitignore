@@ -1,0 +1,78 @@
+# ==========================================
+# 1. DEPENDENCIAS Y PAQUETES
+# ==========================================
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# ==========================================
+# 2. VARIABLES DE ENTORNO Y SECRETOS (CRITICO)
+# Protege los 3 usuarios y las API Keys por sucursal
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.*
+!**/.env.ejemplo
+!**/.env.example
+
+# ==========================================
+# 3. BASE DE DATOS LOCAL (API DE PRUEBA SQLITE)
+# La BD se genera con semillaDatos.js, no se versiona
+# ==========================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+servidor/datos/*.sqlite
+servidor/datos/*.db
+
+# ==========================================
+# 4. COMPILACION Y DISTRIBUCION (REACT / VITE)
+# ==========================================
+dist/
+dist-ssr/
+build/
+**/dist/
+**/build/
+*.local
+
+# ==========================================
+# 5. LOGS Y ARCHIVOS TEMPORALES DE DEPURACION
+# ==========================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==========================================
+# 6. CACHES Y PRUEBAS
+# ==========================================
+.cache/
+.vite/
+**/.vite/
+coverage/
+*.lcov
+.nyc_output
+
+# ==========================================
+# 7. EDITORES, IDEs (ANTIGRAVITY / VSCODE) Y SO
+# ==========================================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

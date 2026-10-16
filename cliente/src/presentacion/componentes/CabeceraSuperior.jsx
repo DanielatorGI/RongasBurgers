@@ -1,5 +1,6 @@
 import React from 'react';
-import { PanelLeftClose, PanelLeftOpen, Store } from 'lucide-react';
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { obtenerImagenSucursal } from '../../configuracion/rutasImagenes';
 
 export default function CabeceraSuperior({
   tituloModulo = 'Panel de Control',
@@ -7,6 +8,8 @@ export default function CabeceraSuperior({
   estaExpandido = true,
   alAlternarPanel
 }) {
+  const imagenSucursal = obtenerImagenSucursal(nombreSucursal);
+
   return (
     <header className="h-16 px-6 bg-crema-tarjeta border-b border-crema-borde flex items-center justify-between sticky top-0 z-20">
       <div className="flex items-center gap-4">
@@ -29,8 +32,15 @@ export default function CabeceraSuperior({
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-100/90 border border-stone-200/80 text-stone-700 text-xs font-semibold">
-          <Store className="w-3.5 h-3.5 text-naranja-primario" />
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100/90 border border-stone-200/80 text-stone-700 text-xs font-semibold">
+          <img
+            src={imagenSucursal}
+            alt={nombreSucursal}
+            className="w-5 h-5 rounded-full object-cover border border-amber-500/40"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
           <span>{nombreSucursal}</span>
         </div>
       </div>

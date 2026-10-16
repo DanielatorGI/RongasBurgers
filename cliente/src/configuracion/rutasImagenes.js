@@ -23,8 +23,8 @@ export const RUTAS_IMAGENES = {
 
   // 2. Logotipos y Marcas
   logos: {
-    logoPrincipal: '', // Si defines una ruta (ej: '/imagenes/logos/logo.png'), se usara en el header
-    iconoHamburguesa: '/imagenes/logos/icono_burger.png',
+    logoPrincipal: '/imagenes/logos/logo_rongas.jpg',
+    iconoHamburguesa: '/imagenes/logos/icono_burger.jpg',
     favicon: '/favicon.ico'
   },
 
@@ -90,6 +90,25 @@ export function obtenerImagenDestacada(tipoDestacado, imagenUrlDirecta = null) {
     return RUTAS_IMAGENES.destacados.perro;
   }
   return imagenUrlDirecta || RUTAS_IMAGENES.platillos.porDefecto;
+}
+
+/**
+ * Obtiene la imagen de portada o fachada para una sucursal determinada.
+ * @param {string} idSucursal 
+ * @returns {string} Ruta final de la imagen
+ */
+export function obtenerImagenSucursal(idSucursal) {
+  const idLimpio = String(idSucursal || '').toLowerCase();
+  if (idLimpio.includes('campestre')) {
+    return RUTAS_IMAGENES.sucursales.campestre;
+  }
+  if (idLimpio.includes('max') || idLimpio.includes('centro')) {
+    return RUTAS_IMAGENES.sucursales.centromax;
+  }
+  if (idLimpio.includes('coecillo')) {
+    return RUTAS_IMAGENES.sucursales.coecillo;
+  }
+  return RUTAS_IMAGENES.banners.bienvenidaHero;
 }
 
 export default RUTAS_IMAGENES;

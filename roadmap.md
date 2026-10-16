@@ -72,9 +72,9 @@ Implementación de KPIs operativos, reglas de negocio del ticket promedio, aflue
 ## Fase 7: Módulo de Gastos (`Control Operativo`)
 Seguimiento de egresos categorizados, alertas de consumo/nómina e histórico semestral[cite: 6, 9, 10, 11].
 
-- [ ] **Commit 7.1:** `feat(gastosDominio): implementar servicio de agrupacion de gastos y evaluador de alertas de consumo/nomina`
+- [x] **Commit 7.1:** `feat(gastosDominio): implementar servicio de agrupacion de gastos y evaluador de alertas de consumo/nomina`
   - Lógica para evaluar variaciones porcentuales y activar banderas rojas de alerta[cite: 6, 9, 10, 11].
-- [ ] **Commit 7.2:** `feat(gastosVista): construir tarjetas de Sueldos, Renta, Agua, Luz y GraficaHistoricoGastos`
+- [x] **Commit 7.2:** `feat(gastosVista): construir tarjetas de Sueldos, Renta, Agua, Luz y GraficaHistoricoGastos`
   - Renderizado de las 4 tarjetas superiores y la gráfica de barras oscuras de los últimos 6 meses[cite: 6].
 
 ---

@@ -82,9 +82,9 @@ Seguimiento de egresos categorizados, alertas de consumo/nómina e histórico se
 ## Fase 8: Módulo de Menú (`Gestión de Menú y Costeo de Recetas`)
 Visualización de platillos, márgenes de ganancia, caché en `localStorage` y explosión de insumos desplegable[cite: 7, 8, 9, 10, 11].
 
-- [ ] **Commit 8.1:** `feat(menuDominio): integrar gestorCacheSesion en servicioMenu y calculo de margenes por receta`
+- [x] **Commit 8.1:** `feat(menuDominio): integrar gestorCacheSesion en servicioMenu y calculo de margenes por receta`
   - Garantiza que al abrir el módulo de Menú los datos se guarden en caché local para no repetir llamadas HTTP en la misma sesión[cite: 9, 10, 11].
-- [ ] **Commit 8.2:** `feat(menuVista): construir TarjetaPlatilloMenu con acordeon desplegable de Desglose de Costos`
+- [x] **Commit 8.2:** `feat(menuVista): construir TarjetaPlatilloMenu con acordeon desplegable de Desglose de Costos`
   - Lista de platillos sin botón de "+ Nuevo Platillo", mostrando imagen, precio de venta, barra de `Costo Total` y `Margen %`, y lista desplegable con el costo individual de cada ingrediente y empaque[cite: 7, 8].
 
 ---

@@ -4,6 +4,7 @@ import PaginaLogin from './presentacion/paginas/PaginaLogin';
 import PaginaInicio from './presentacion/paginas/PaginaInicio';
 import PaginaVentas from './presentacion/paginas/PaginaVentas';
 import PaginaGastos from './presentacion/paginas/PaginaGastos';
+import PaginaMenu from './presentacion/paginas/PaginaMenu';
 import DisenoPrincipal from './presentacion/componentes/DisenoPrincipal';
 import { servicioAutenticacion } from './dominio/servicios/servicioAutenticacion';
 
@@ -52,20 +53,7 @@ export default function App() {
       {moduloActivo === 'inicio' && <PaginaInicio />}
       {moduloActivo === 'ventas' && <PaginaVentas />}
       {moduloActivo === 'gastos' && <PaginaGastos />}
-
-      {moduloActivo !== 'inicio' && moduloActivo !== 'ventas' && moduloActivo !== 'gastos' && (
-        <div className="bg-crema-tarjeta border border-crema-borde rounded-3xl p-8 shadow-sm text-center">
-          <div className="inline-block px-3 py-1 bg-amber-500/10 text-naranja-oscuro font-bold rounded-full text-xs uppercase mb-3">
-            Módulo: {moduloActivo.toUpperCase()}
-          </div>
-          <h2 className="text-2xl font-bold text-stone-900">
-            Vista de {moduloActivo.charAt(0).toUpperCase() + moduloActivo.slice(1)}
-          </h2>
-          <p className="text-stone-500 text-sm mt-2 max-w-md mx-auto">
-            Módulo analítico en cola de desarrollo según el roadmap.
-          </p>
-        </div>
-      )}
+      {moduloActivo === 'menu' && <PaginaMenu />}
     </DisenoPrincipal>
   );
 }

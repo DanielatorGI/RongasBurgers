@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { servicioAutenticacion } from '../../dominio/servicios/servicioAutenticacion';
 
 export function usarControladorLogin() {
   const [correo, setCorreo] = useState('');
@@ -8,14 +9,53 @@ export function usarControladorLogin() {
   const [estaCargando, setEstaCargando] = useState(false);
   const [mensajeError, setMensajeError] = useState('');
 
+  useEffect(() => {
+    const correoGuardado = servicioAutenticacion.obtenerCorreoRecordado();
+    if (correoGuardado) {
+      setCorreo(correoGuardado);
+      setRecordarme(true);
+    }
+  }, []);
+
   const alternarVisibilidadContrasena = () => {
     setMostrarContrasena((estadoPrevio) => !estadoPrevio);
   };
 
-  const limpiarFormulario = () => {
-    setCorreo('');
-    setContrasena('');
+  const seleccionarCredencialDemo = (sucursalKey) => {
     setMensajeError('');
+    if (sucursalKey === 'campestre') {
+      setCorreo('campestre@rongasburgers.com');
+      setContrasena('Campestre2026*');
+    } else if (sucursalKey === 'centromax') {
+      setCorreo('centromax@rongasburgers.com');
+      setContrasena('CentroMax2026*');
+    } else if (sucursalKey === 'coecillo') {
+      setCorreo('coecillo@rongasburgers.com');
+      setContrasena('Coecillo2026*');
+    }
+  };
+
+  const procesarInicioSesion = async (evento, onExito) => {
+    if (evento) evento.preventDefault();
+    setMensajeError('');
+
+    if (!correo.trim() || !contrasena) {
+      setMensajeError('Por favor ingresa tu correo electronico y contrasena.');
+      return;
+    }
+
+    setEstaCargando(true);
+    try {
+      const sucursal = await servicioAutenticacion.iniciarSesion(correo.trim(), contrasena);
+      servicioAutenticacion.guardarSesion(sucursal, recordarme);
+      if (typeof onExito === 'function') {
+        onExito(sucursal);
+      }
+    } catch (error) {
+      setMensajeError(error.message || 'Error al conectar con el servidor.');
+    } finally {
+      setEstaCargando(false);
+    }
   };
 
   return {
@@ -28,9 +68,8 @@ export function usarControladorLogin() {
     mostrarContrasena,
     alternarVisibilidadContrasena,
     estaCargando,
-    setEstaCargando,
     mensajeError,
-    setMensajeError,
-    limpiarFormulario
+    procesarInicioSesion,
+    seleccionarCredencialDemo
   };
 }

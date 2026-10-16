@@ -28,11 +28,11 @@ Construcción del servidor local que simulará los endpoints de *SoftRestaurant*
 ## Fase 3: Infraestructura Frontend, Seguridad Local y Módulo de Login
 Implementación del blindaje de solo lectura en el cliente, almacenamiento local encriptado y pantallas de acceso[cite: 1, 2, 9, 10, 11].
 
-- [ ] **Commit 3.1:** `feat(seguridadCliente): implementar interceptorSoloLectura y gestorAlmacenamientoLocal`
+- [x] **Commit 3.1:** `feat(seguridadCliente): implementar interceptorSoloLectura y gestorAlmacenamientoLocal`
   - Creación del cliente HTTP que bloquea cualquier método distinto a `GET` en consultas de datos[cite: 9, 10, 11], junto con el cifrado de sesión y el `gestorCacheSesion` en `localStorage`[cite: 9, 10, 11].
-- [ ] **Commit 3.2:** `feat(loginDominio): crear modelo de sesion y controlador usarControladorLogin`
+- [x] **Commit 3.2:** `feat(loginDominio): crear modelo de sesion y controlador usarControladorLogin`
   - Lógica de autenticación, guardado de `claveApi` activa y redirección protegida[cite: 9, 10, 11].
-- [ ] **Commit 3.3:** `feat(loginVista): maquetar pantalla de Bienvenida (Hero) y formulario de Iniciar Sesion`
+- [x] **Commit 3.3:** `feat(loginVista): maquetar pantalla de Bienvenida (Hero) y formulario de Iniciar Sesion`
   - Replicación fiel del diseño de Figma eliminando los botones de `"Registrarse"`, `"Google"` y `"Apple"`[cite: 1, 2].
 
 ---

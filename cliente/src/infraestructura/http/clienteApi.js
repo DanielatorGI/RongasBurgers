@@ -1,4 +1,5 @@
 import { verificarPermisoSoloLectura } from './interceptorSoloLectura';
+import { gestorAlmacenamientoLocal } from '../almacenamiento/gestorAlmacenamientoLocal';
 
 const URL_BASE = import.meta.env.VITE_URL_API_SERVIDOR || 'http://localhost:3001';
 
@@ -7,9 +8,13 @@ export async function realizarPeticionHttp(ruta, opciones = {}) {
 
   verificarPermisoSoloLectura(ruta, metodo);
 
+  const sesionGuardada = gestorAlmacenamientoLocal.obtenerItem('sesion_activa');
+  const claveApiSesion = sesionGuardada?.claveApi;
+
   const urlCompleta = `${URL_BASE}${ruta.startsWith('/') ? ruta : `/${ruta}`}`;
   const encabezados = {
     'Content-Type': 'application/json',
+    ...(claveApiSesion ? { 'x-api-key': claveApiSesion } : {}),
     ...(opciones.headers || {})
   };
 

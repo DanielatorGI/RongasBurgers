@@ -25,12 +25,14 @@ node_modules/
 # La BD se genera con semillaDatos.js, no se versiona
 # ==========================================
 *.sqlite
+*.sqlite*
+*.sqlite-shm
+*.sqlite-wal
 *.sqlite3
 *.db
 *.db-shm
 *.db-wal
-servidor/datos/*.sqlite
-servidor/datos/*.db
+servidor/datos/
 
 # ==========================================
 # 4. COMPILACION Y DISTRIBUCION (REACT / VITE)

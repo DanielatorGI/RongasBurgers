@@ -14,13 +14,13 @@ El objetivo de esta fase es inicializar el monorepo/estructura cliente-servidor,
 ## Fase 2: API de Prueba (Backend MVC + SQLite + Script Seed)
 Construcción del servidor local que simulará los endpoints de *SoftRestaurant*[cite: 9, 10, 11], aislando la información según la `claveApi` de la sucursal autenticada[cite: 9, 10, 11].
 
-- [ ] **Commit 2.1:** `feat(bd): implementar conexion sqlite y esquemas de tablas en capa de infraestructura`
+- [x] **Commit 2.1:** `feat(bd): implementar conexion sqlite y esquemas de tablas en capa de infraestructura`
   - Creación de tablas: `sucursales`, `resumenesVentas`, `ventasPorHora`, `ventasMensuales`, `ventasPorCategoria`, `gastosOperativos`, `historicoGastos`, `platillosMenu` e `insumosReceta`.
-- [ ] **Commit 2.2:** `feat(semilla): crear script semillaDatos.js para inyectar datos realistas de las 3 sucursales`
-  - Script ejecutable que limpia y puebla la base de datos con métricas distintas para *Campestre* (ej. ticket bajo \$164 para probar alerta roja)[cite: 4], *Centro Max* (ticket saludable > \$180) y *Coecillo* (alerta en consumo de luz/nómina)[cite: 6, 9, 10, 11].
-- [ ] **Commit 2.3:** `feat(seguridadApi): implementar middleware de validacion de usuarios y aislamiento por claveApi`
+- [x] **Commit 2.2:** `feat(semilla): crear script semillaDatos.js para inyectar datos realistas de las 3 sucursales`
+  - Script ejecutable que limpia y puebla la base de datos con métricas distintas para *Campestre* (ej. ticket bajo \$164 para probar alerta roja)[cite: 4], *Centro Max* (ticket saludable > \$180) y *Coecillo* (alerta en consumo de luz/nómina)[cite: 6, 9, 10, 11] con 4 meses de histórico.
+- [x] **Commit 2.3:** `feat(seguridadApi): implementar middleware de validacion de usuarios y aislamiento por claveApi`
   - Endpoint de validación de sesión contra los 3 usuarios del `.env` y middleware que filtra todas las consultas SQL por `sucursalId` según el header `x-api-key`[cite: 9, 10, 11].
-- [ ] **Commit 2.4:** `feat(endpointsApi): construir repositorios, servicios y controladores GET para inicio, ventas, gastos y menu`
+- [x] **Commit 2.4:** `feat(endpointsApi): construir repositorios, servicios y controladores GET para inicio, ventas, gastos y menu`
   - Exposición de rutas exclusivamente `GET` para alimentar los 4 módulos analíticos[cite: 9, 10, 11].
 
 ---

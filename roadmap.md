@@ -60,11 +60,11 @@ Desarrollo de la vista ejecutiva inicial tras iniciar sesión[cite: 3].
 ## Fase 6: Módulo de Ventas (`El Pulso Diario`)
 Implementación de KPIs operativos, reglas de negocio del ticket promedio, afluencia y curva de horas pico ("Rush")[cite: 4, 5, 9, 10, 11].
 
-- [ ] **Commit 6.1:** `feat(ventasDominio): programar reglas evaluarAlertaTicket (< 180) y calcularComparativaSemanal`
+- [x] **Commit 6.1:** `feat(ventasDominio): programar reglas evaluarAlertaTicket (< 180) y calcularComparativaSemanal`
   - Servicios de dominio puros que evalúan los datos recibidos del API y determinan los estados de alerta[cite: 4, 9, 10, 11].
-- [ ] **Commit 6.2:** `feat(ventasTarjetas): construir selector de periodo (Hoy/Semana/Mes), fila de 4 KPIs y tarjetas de Afluencia`
+- [x] **Commit 6.2:** `feat(ventasTarjetas): construir selector de periodo (Hoy/Semana/Mes), fila de 4 KPIs y tarjetas de Afluencia`
   - Maquetación de `Venta Bruta`, `Venta Neta`, `Ticket Promedio` (con alerta roja activa si < \$180), `Comparativa`, `Mesas atendidas` (con barra segmentada) y `Comensales atendidos` (con bloques de mediodía, noche y valle)[cite: 4].
-- [ ] **Commit 6.3:** `feat(ventasPicos): implementar GraficaPicosHora con indicadores de Rush y tarjetas de resumen horario`
+- [x] **Commit 6.3:** `feat(ventasPicos): implementar GraficaPicosHora con indicadores de Rush y tarjetas de resumen horario`
   - Gráfica de líneas curva (`8am` a `10pm`) comparando hoy vs semana anterior, líneas punteadas de `"Rush 🔥"` y las 3 tarjetas inferiores (`Rush mediodia`, `Rush nocturno`, `Valle tarde`)[cite: 5].
 
 ---

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PaginaBienvenida from './presentacion/paginas/PaginaBienvenida';
 import PaginaLogin from './presentacion/paginas/PaginaLogin';
 import PaginaInicio from './presentacion/paginas/PaginaInicio';
+import PaginaVentas from './presentacion/paginas/PaginaVentas';
 import DisenoPrincipal from './presentacion/componentes/DisenoPrincipal';
 import { servicioAutenticacion } from './dominio/servicios/servicioAutenticacion';
 
@@ -48,8 +49,9 @@ export default function App() {
       nombreSucursal={usuarioAutenticado.nombre}
     >
       {moduloActivo === 'inicio' && <PaginaInicio />}
+      {moduloActivo === 'ventas' && <PaginaVentas />}
 
-      {moduloActivo !== 'inicio' && (
+      {moduloActivo !== 'inicio' && moduloActivo !== 'ventas' && (
         <div className="bg-crema-tarjeta border border-crema-borde rounded-3xl p-8 shadow-sm text-center">
           <div className="inline-block px-3 py-1 bg-amber-500/10 text-naranja-oscuro font-bold rounded-full text-xs uppercase mb-3">
             Módulo: {moduloActivo.toUpperCase()}

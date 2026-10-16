@@ -50,9 +50,9 @@ Construcción del esqueleto visual de la aplicación y las piezas atómicas reut
 ## Fase 5: Módulo de Inicio (`Panel de Control`)
 Desarrollo de la vista ejecutiva inicial tras iniciar sesión[cite: 3].
 
-- [ ] **Commit 5.1:** `feat(inicio): implementar servicio, controlador y componentes de graficas para el Panel de Control`
+- [x] **Commit 5.1:** `feat(inicio): implementar servicio, controlador y componentes de graficas para el Panel de Control`
   - Gráfica de área `GraficaIngresosMensuales` (Ene-Dic) y gráfica de barras `GraficaVentasCategoria`[cite: 3].
-- [ ] **Commit 5.2:** `feat(inicioDestacados): crear componente TarjetaPlatilloDestacado (Plato Estrella y Plato Perro)`
+- [x] **Commit 5.2:** `feat(inicioDestacados): crear componente TarjetaPlatilloDestacado (Plato Estrella y Plato Perro)`
   - Renderizado de la columna derecha con imagen, insignia de clasificación y unidades vendidas al mes[cite: 3].
 
 ---

@@ -40,9 +40,9 @@ Implementación del blindaje de solo lectura en el cliente, almacenamiento local
 ## Fase 4: Layout Global y Componentes Visuales Reutilizables (SOLID)
 Construcción del esqueleto visual de la aplicación y las piezas atómicas reutilizables para evitar archivos extensos.
 
-- [ ] **Commit 4.1:** `feat(layout): construir PanelLateral colapsable y CabeceraSuperior sin boton de reporte`
+- [x] **Commit 4.1:** `feat(layout): construir PanelLateral colapsable y CabeceraSuperior sin boton de reporte`
   - Implementación del sidebar que se expande y contrae dinámicamente (`Inicio`, `Ventas`, `Gastos`, `Menu`) y barra superior limpia[cite: 3, 4, 5, 6, 7, 8].
-- [ ] **Commit 4.2:** `feat(componentesBase): crear componentes reutilizables TarjetaMetrica, InsigniaEstado y ContenedorGrafica`
+- [x] **Commit 4.2:** `feat(componentesBase): crear componentes reutilizables TarjetaMetrica, InsigniaEstado y ContenedorGrafica`
   - Componentes presentacionales puros (< 80 líneas cada uno) preparados para recibir variantes de alerta (rojo, verde, crema)[cite: 3, 4, 5, 6, 7, 8].
 
 ---

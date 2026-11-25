@@ -1,7 +1,9 @@
 import { verificarPermisoSoloLectura } from './interceptorSoloLectura';
 import { gestorAlmacenamientoLocal } from '../almacenamiento/gestorAlmacenamientoLocal';
 
-const URL_BASE = import.meta.env.VITE_URL_API_SERVIDOR || 'http://localhost:3001';
+const URL_BASE =
+  import.meta.env.VITE_URL_API_SERVIDOR ??
+  (import.meta.env.DEV ? 'http://localhost:3001' : '');
 
 export async function realizarPeticionHttp(ruta, opciones = {}) {
   const metodo = (opciones.method || 'GET').toUpperCase();

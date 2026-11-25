@@ -1,10 +1,28 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import sea from 'node:sea';
+import path from 'path';
+import { exec } from 'child_process';
 import enrutadorAutenticacion from './presentacion/rutas/rutasAutenticacion.js';
 import enrutadorAnalitica from './presentacion/rutas/rutasAnalitica.js';
+import { registrarFrontendEstatico } from './presentacion/rutas/rutasEstaticas.js';
+import { asegurarBaseDatosInicializada } from './infraestructura/baseDatos/inicializadorBaseDatos.js';
 
-dotenv.config();
+let esEjecutableSea = false;
+try {
+  esEjecutableSea = sea.isSea();
+} catch {
+  esEjecutableSea = false;
+}
+
+if (esEjecutableSea) {
+  dotenv.config({ path: path.join(path.dirname(process.execPath), '.env') });
+} else {
+  dotenv.config();
+}
+
+asegurarBaseDatosInicializada();
 
 const aplicacion = express();
 const PUERTO = Number(process.env.PUERTO) || 3001;
@@ -24,6 +42,8 @@ aplicacion.get('/api/salud', (req, res) => {
 aplicacion.use('/api/autenticacion', enrutadorAutenticacion);
 aplicacion.use('/api', enrutadorAnalitica);
 
+registrarFrontendEstatico(aplicacion);
+
 aplicacion.use((req, res) => {
   res.status(404).json({
     exito: false,
@@ -32,7 +52,11 @@ aplicacion.use((req, res) => {
 });
 
 export const servidorActivo = aplicacion.listen(PUERTO, () => {
-  console.log(`[Servidor] API de Rongas Burgers ejecutandose en el puerto ${PUERTO}`);
+  const urlLocal = `http://localhost:${PUERTO}`;
+  console.log(`[Servidor] Rongas Burgers ejecutandose en ${urlLocal}`);
+  if (esEjecutableSea && process.platform === 'win32' && process.env.NO_ABRIR_NAVEGADOR !== '1') {
+    exec(`start "" "${urlLocal}"`);
+  }
 });
 
 export default aplicacion;

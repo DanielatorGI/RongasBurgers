@@ -1,4 +1,5 @@
 import { DatabaseSync } from 'node:sqlite';
+import sea from 'node:sea';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -6,9 +7,24 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const nombreArchivo = fileURLToPath(import.meta.url);
-const directorioActual = path.dirname(nombreArchivo);
-const raizServidor = path.resolve(directorioActual, '../../../');
+function obtenerRaizServidor() {
+  try {
+    if (sea.isSea()) {
+      return path.dirname(process.execPath);
+    }
+  } catch {
+    // Continuar con resolucion estandar fuera de SEA
+  }
+
+  if (typeof import.meta !== 'undefined' && import.meta.url) {
+    const nombreArchivo = fileURLToPath(import.meta.url);
+    return path.resolve(path.dirname(nombreArchivo), '../../../');
+  }
+
+  return process.cwd();
+}
+
+const raizServidor = obtenerRaizServidor();
 
 let instanciaBaseDatos = null;
 

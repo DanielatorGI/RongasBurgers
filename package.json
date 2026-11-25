@@ -1,0 +1,14 @@
+{
+  "name": "rongas-burgers-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "construir:exe": "node scripts/construirEjecutable.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2",
+    "postject": "^1.0.0-alpha.6"
+  }
+}
+
